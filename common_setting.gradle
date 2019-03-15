@@ -49,6 +49,6 @@ android {
     }
 
     dependencies {
-        implementation "tech.aiq:aiqkit:0.9.6"
+        implementation "tech.aiq:aiqkit:0.9.9"
     }
 }
