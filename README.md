@@ -13,7 +13,7 @@ add to your build.gradle:
 
 ```
 dependencies {
-    compile 'tech.aiq:aiqkit:0.9.9'
+    compile 'tech.aiq:aiqkit:0.9.10'
 }
 ```
 
