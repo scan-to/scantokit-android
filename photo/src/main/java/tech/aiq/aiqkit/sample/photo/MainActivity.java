@@ -2,14 +2,21 @@ package tech.aiq.aiqkit.sample.photo;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import rx.Observable;
+import org.jetbrains.annotations.NotNull;
+
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.EmptyCoroutineContext;
+import tech.aiq.api.model.PayloadData;
 import tech.aiq.kit.AIQKit;
+import tech.aiq.kit.core.util.BitmapUtils;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getName();
@@ -38,18 +45,43 @@ public class MainActivity extends Activity {
                 return;
             }
 
-            Observable<AIQKit.MatchResult> result = AIQKit.matchImage(uri);
-            // use blocking mode to wait for the result
-            try {
-                AIQKit.MatchResult matchResult = result.toBlocking().first();
-                if (matchResult != null) {
-                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(matchResult.getPayload()));
-                    startActivity(myIntent);
-                }
-            } catch (Throwable t) {
-                showToast("No match found");
+            //load bitmap and resize it
+            final Bitmap bitmap = BitmapUtils.getSizeRestrictedBitmap(this,
+                    uri,
+                    AIQKit.LONGEST_SIDE_DESIRED_PIXELS,
+                    false, false);
 
-            }
+            AIQKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
+                @NotNull
+                @Override
+                public CoroutineContext getContext() {
+                    return EmptyCoroutineContext.INSTANCE;
+                }
+
+                @Override
+                public void resumeWith(@NotNull final Object o) {
+
+                    bitmap.recycle();
+
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+
+                            if (o instanceof PayloadData) {
+                                PayloadData payloadData = (PayloadData) o;
+                                if (payloadData.isSuccess()) {
+                                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(payloadData.getPayloadUrl()));
+                                    startActivity(myIntent);
+                                } else {
+                                    showToast("No match found");
+                                }
+                            } else {
+                                showToast("No match found");
+                            }
+                        }
+                    });
+                }
+            });
         }
     }
 

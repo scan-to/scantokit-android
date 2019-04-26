@@ -1,3 +1,9 @@
 apply plugin: 'com.android.application'
 
 apply from: "../common_setting.gradle"
+
+android {
+    defaultConfig {
+        minSdkVersion 16
+    }
+}

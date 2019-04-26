@@ -19,4 +19,13 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--dontwarn org.slf4j.impl.*
+-keep class io.ktor.** { *; }
+-keep class kotlinx.coroutines.** { *; }
+-dontwarn kotlinx.atomicfu.**
+-dontwarn io.netty.**
+-dontwarn com.typesafe.**
+-dontwarn org.slf4j.**
+-keep class tech.aiq.api.** { *; }
+-keep class tech.aiq.kit.core.room.entity.** { *; }
+-keep class tech.aiq.kit.core.model.** { *; }
+-optimizations !class/unboxing/enum

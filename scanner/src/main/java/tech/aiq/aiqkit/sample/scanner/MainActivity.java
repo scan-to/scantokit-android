@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
     }
 
     public void OnClick(View view) {
-        AIQKit.startScanner(this);
+        AIQKit.Companion.startScanner(this);
     }
 
 }

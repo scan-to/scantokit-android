@@ -13,9 +13,12 @@ import android.support.v4.app.ActivityCompat;
 import android.view.View;
 import android.widget.Toast;
 
-import rx.Observable;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Action1;
+import org.jetbrains.annotations.NotNull;
+
+import kotlin.coroutines.Continuation;
+import kotlin.coroutines.CoroutineContext;
+import kotlin.coroutines.EmptyCoroutineContext;
+import tech.aiq.api.model.PayloadData;
 import tech.aiq.kit.AIQKit;
 
 public class MainActivity extends Activity {
@@ -45,31 +48,42 @@ public class MainActivity extends Activity {
 
         if (resultCode == RESULT_OK) {
 
-            Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
-            //scale up the bitmap large enough for testing,
-            imageBitmap = Bitmap.createScaledBitmap(imageBitmap, imageBitmap.getWidth() * 3, imageBitmap.getHeight() * 3, true);
-            Observable<AIQKit.MatchResult> result = AIQKit.matchImage(imageBitmap);
+            final Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
+            //scale up the bitmap large enough for testing (must be 400 - 1200 pixel)
+            final Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, imageBitmap.getWidth() * 3, imageBitmap.getHeight() * 3, true);
+            imageBitmap.recycle();
 
-            result.observeOn(AndroidSchedulers.mainThread()).subscribe(
-                    new Action1<AIQKit.MatchResult>() {
+            AIQKit.Companion.matchImage(resizedBitmap, new Continuation<PayloadData>() {
+                @NotNull
+                @Override
+                public CoroutineContext getContext() {
+                    return EmptyCoroutineContext.INSTANCE;
+                }
+
+                @Override
+                public void resumeWith(@NotNull final Object o) {
+
+                    resizedBitmap.recycle();
+
+                    runOnUiThread(new Runnable() {
                         @Override
-                        public void call(AIQKit.MatchResult result) {
-                            // take the returned payload as url and show it in browser window
-                            if (result != null) {
-                                Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(result.getPayload()));
-                                startActivity(myIntent);
+                        public void run() {
+
+                            if (o instanceof PayloadData) {
+                                PayloadData payloadData = (PayloadData) o;
+                                if (payloadData.isSuccess()) {
+                                    Intent myIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(payloadData.getPayloadUrl()));
+                                    startActivity(myIntent);
+                                } else {
+                                    showToast("No match found");
+                                }
                             } else {
                                 showToast("No match found");
                             }
                         }
-                    },
-                    new Action1<Throwable>() {
-                        @Override
-                        public void call(Throwable throwable) {
-                            showToast("No match found");
-                        }
-                    }
-            );
+                    });
+                }
+            });
         }
     }
 
