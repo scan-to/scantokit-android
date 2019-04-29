@@ -13,7 +13,7 @@ You also need to ingest some image/pdf/video before you can search for them.
 add to your build.gradle:
 ```
 dependencies {
-    implementation 'tech.aiq:aiqkit:2.0.2'
+    implementation 'tech.aiq:aiqkit:2.0.3'
 }
 ```
 make sure you have the jcenter repo in your top level (project) build.gradle:
@@ -93,6 +93,81 @@ public class MyScannerActivity extends IqKitScannerActivity {
         readyForNextTrigger();
     }
 }
+```
+##### Matching Bitmap And Image Url Manually
+If you prefer to build your scanner, or if you want to directly match the bitmap/image url, you can use AIQKit.Companion.matchImage() functions:
+```
+//1. match bitmap
+AIQKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
+            @NotNull
+            @Override
+            public CoroutineContext getContext() {
+                return EmptyCoroutineContext.INSTANCE;
+            }
+
+            @Override
+            public void resumeWith(@NotNull final Object o) {
+                if (o instanceof PayloadData) {
+                    //process your payload
+                }else{
+                    //possible error happened
+                }
+            }
+        });
+        
+//2. match bitmap with specific collection id
+AIQKit.Companion.matchImage(bitmap, "collectionId", new Continuation<PayloadData>() {
+            @NotNull
+            @Override
+            public CoroutineContext getContext() {
+                return EmptyCoroutineContext.INSTANCE;
+            }
+
+            @Override
+            public void resumeWith(@NotNull final Object o) {
+                if (o instanceof PayloadData) {
+                    //process your payload
+                }else{
+                    //possible error happened
+                }
+            }
+        });
+        
+//3. match image url
+AIQKit.Companion.matchImage(imageUrlString, new Continuation<PayloadData>() {
+            @NotNull
+            @Override
+            public CoroutineContext getContext() {
+                return EmptyCoroutineContext.INSTANCE;
+            }
+
+            @Override
+            public void resumeWith(@NotNull final Object o) {
+                if (o instanceof PayloadData) {
+                    //process your payload
+                }else{
+                    //possible error happened
+                }
+            }
+        });
+        
+//4. match image url with specific collection id
+AIQKit.Companion.matchImage(imageUrlString, "collectionId", new Continuation<PayloadData>() {
+            @NotNull
+            @Override
+            public CoroutineContext getContext() {
+                return EmptyCoroutineContext.INSTANCE;
+            }
+
+            @Override
+            public void resumeWith(@NotNull final Object o) {
+                if (o instanceof PayloadData) {
+                    //process your payload
+                }else{
+                    //possible error happened
+                }
+            }
+        });
 ```
 
 ##### Miscellaneous
