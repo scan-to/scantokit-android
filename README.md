@@ -13,7 +13,7 @@ You also need to ingest some image/pdf/video before you can search for them.
 add to your build.gradle:
 ```
 dependencies {
-    implementation 'tech.aiq:aiqkit:2.0.3'
+    implementation 'tech.aiq:aiqkit:2.0.4'
 }
 ```
 make sure you have the jcenter repo in your top level (project) build.gradle:
@@ -58,12 +58,19 @@ There are 3 ways on using the scanner.
 1. is by using AIQ default scanner by calling :
 ```
 AIQKit.Companion.startScanner(context);
+
+//scan within the specific collectionId
+AIQKit.Companion.startScanner(context, collectionId);
 ```
 The scan result will be automatically opened in a web activity.
 
 2. is by using AIQ default scanner but handle the payload by yourself :
 ```
 AIQKit.Companion.startScannerForResult(activity, requestCode);
+
+//scan within the specific collectionId
+AIQKit.Companion.startScannerForResult(activity, collectionId, requestCode);
+
 ```
 and handle the scan result :
 ```
