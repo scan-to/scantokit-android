@@ -13,7 +13,7 @@ You also need to ingest some image/pdf/video before you can search for them.
 add to your build.gradle:
 ```
 dependencies {
-    implementation 'tech.aiq:aiqkit:2.0.4'
+    implementation 'tech.aiq:aiqkit:2.0.6'
 }
 ```
 make sure you have the jcenter repo in your top level (project) build.gradle:
@@ -38,7 +38,17 @@ To use the example apps, define the following in your gradle.properties file:
 AIQ_APP_ID=enter AppID here
 AIQ_APP_SECRET=enter Secret here
 ```
-**UserId**, a value that can be used to uniquely identify an application user. Maximum length 100 characters; Excess will be truncated automatically
+**UserId**, a value that can be used to uniquely identify an application user. Maximum length 100 characters; Excess will be truncated automatically.
+
+You are able to change this UserId with:
+```
+AIQKit.Companion.changeUserConfiguration(userId, age, gender);
+```
+Age and gender are optional, you can pass null.
+Gender is either "male", "female", or "other".
+These data are important for statistic report that you can see in AIQ dashboard.
+UserId will be counted as how many user use your application. So it's best practice to set this UserId based on your app's user login id or android unique id (if you don't have login feature on your app)
+
 **isProduction** you can set either true or false, if true then it will point to production url https://api.aiq.tech, and if false it will point to staging url https://api.aiqtechnology.com.
 You can override the base url with:
 ```
