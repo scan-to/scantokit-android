@@ -13,7 +13,7 @@ You also need to ingest some image/pdf/video before you can search for them.
 add to your build.gradle:
 ```
 dependencies {
-    implementation 'tech.aiq:aiqkit:2.0.6'
+    implementation 'tech.aiq:aiqkit:2.0.8'
 }
 ```
 make sure you have the jcenter repo in your top level (project) build.gradle:
