@@ -65,7 +65,7 @@ AIQKit.Companion.auth()
 
 ##### Launch Scanner Activity
 There are 3 ways on using the scanner. 
-1. is by using AIQ default scanner by calling :
+1. is by using Scanto default scanner by calling :
 ```
 AIQKit.Companion.startScanner(context);
 
