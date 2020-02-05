@@ -1,11 +1,11 @@
-AIQ aiqkit Android SDK sample implementation With Java
+Scanto aiqkit Android SDK sample implementation With Java
 -----------------
 
-The Android SDK gives you access to the powerful AIQ Vision Search platform to integrate into your Android app. It uses [AIQApi]("https://github.com/aiqtech/AIQApi-Android") library for the api calls.
+The Android SDK gives you access to the powerful AIQ Vision Search platform to integrate into your Android app. It uses [AIQApi]("https://github.com/scan-to/AIQApi-Android") library for the api calls.
 
 #### AppID and Ingestion
 
-Before using the sdk, an AppID/Secret pair is required. This can be obtained from the client dashboard at https://dashboard.aiq.tech/. 
+Before using the sdk, an AppID/Secret pair is required. This can be obtained from the client dashboard at https://dashboard.scanto.tech/. 
 You also need to ingest some image/pdf/video before you can search for them.
 
 #### Add aiqkit as a Dependency.
@@ -49,7 +49,7 @@ Gender is either "male", "female", or "other".
 These data are important for statistic report that you can see in AIQ dashboard.
 UserId will be counted as how many user use your application. So it's best practice to set this UserId based on your app's user login id or android unique id (if you don't have login feature on your app)
 
-**isProduction** you can set either true or false, if true then it will point to production url https://api.aiq.tech, and if false it will point to staging url https://api.aiqtechnology.com.
+**isProduction** you can set either true or false, if true then it will point to production url https://api.scanto.tech, and if false it will point to staging url api.stage.scanto.tech.
 You can override the base url with:
 ```
 AIQKit.Companion.setBaseUrl("url");
