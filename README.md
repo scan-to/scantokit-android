@@ -1,7 +1,7 @@
 Scanto aiqkit Android SDK sample implementation With Java
 -----------------
 
-The Android SDK gives you access to the powerful AIQ Vision Search platform to integrate into your Android app. It uses [AIQApi]("https://github.com/scan-to/AIQApi-Android") library for the api calls.
+The Android SDK gives you access to the powerful Scanto Vision Search platform to integrate into your Android app. It uses [AIQApi]("https://github.com/scan-to/AIQApi-Android") library for the api calls.
 
 #### AppID and Ingestion
 
