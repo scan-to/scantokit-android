@@ -46,10 +46,10 @@ AIQKit.Companion.changeUserConfiguration(userId, age, gender);
 ```
 Age and gender are optional, you can pass null.
 Gender is either "male", "female", or "other".
-These data are important for statistic report that you can see in AIQ dashboard.
+These data are important for statistic report that you can see in Scanto dashboard.
 UserId will be counted as how many user use your application. So it's best practice to set this UserId based on your app's user login id or android unique id (if you don't have login feature on your app)
 
-**isProduction** you can set either true or false, if true then it will point to production url https://api.scanto.tech, and if false it will point to staging url api.stage.scanto.tech.
+**isProduction** you can set either true or false, if true then it will point to production url https://api.scanto.tech, and if false it will point to staging url https://api.stage.scanto.tech.
 You can override the base url with:
 ```
 AIQKit.Companion.setBaseUrl("url");
