@@ -6,7 +6,7 @@
     android:background="@color/squash"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="tech.aiq.aiqkit.sample.camera.MainActivity">
+    tools:context="tech.scanto.scantokit.sample.camera.MainActivity">
 
     <Button
         android:id="@+id/button"

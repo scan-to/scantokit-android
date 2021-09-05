@@ -1,10 +1,10 @@
-package tech.aiq.aiqkit.sample.scanner;
+package tech.scanto.scantokit.sample.scanner;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
-import tech.aiq.kit.AIQKit;
+import tech.scanto.kit.ScantoKit;
 
 public class MainActivity extends Activity {
 
@@ -15,7 +15,7 @@ public class MainActivity extends Activity {
     }
 
     public void OnClick(View view) {
-        AIQKit.Companion.startScanner(this);
+        ScantoKit.Companion.startScanner(this);
     }
 
 }

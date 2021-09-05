@@ -1,9 +1,9 @@
-package tech.aiq.aiqkit.sample.photo;
+package tech.scanto.scantokit.sample.photo;
 
 import android.app.Application;
 import android.util.Log;
 
-import tech.aiq.kit.AIQKit;
+import tech.scanto.kit.ScantoKit;
 
 public class PhotoApplication extends Application {
     private static final String TAG = PhotoApplication.class.getSimpleName();
@@ -15,8 +15,8 @@ public class PhotoApplication extends Application {
 
         Log.d(TAG, "PhotoApplication Started");
 
-        //initialize aiqkit
-        AIQKit.Companion.init(this, BuildConfig.AIQ_APP_ID, BuildConfig.AIQ_APP_SECRET, USER_ID, true, true);
-        Log.d(TAG, "Initialized AIQKit SDK");
+        //initialize scantokit
+        ScantoKit.Companion.init(this, BuildConfig.SCANTO_APP_ID, BuildConfig.SCANTO_APP_SECRET, USER_ID, true, true);
+        Log.d(TAG, "Initialized ScantoKit SDK");
     }
 }

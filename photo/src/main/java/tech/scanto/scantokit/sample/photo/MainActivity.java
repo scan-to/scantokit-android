@@ -1,4 +1,4 @@
-package tech.aiq.aiqkit.sample.photo;
+package tech.scanto.scantokit.sample.photo;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -14,9 +14,9 @@ import org.jetbrains.annotations.NotNull;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
-import tech.aiq.api.model.PayloadData;
-import tech.aiq.kit.AIQKit;
-import tech.aiq.kit.core.util.BitmapUtils;
+import tech.scanto.api.model.PayloadData;
+import tech.scanto.kit.ScantoKit;
+import tech.scanto.kit.core.util.BitmapUtils;
 
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getName();
@@ -48,10 +48,10 @@ public class MainActivity extends Activity {
             //load bitmap and resize it
             final Bitmap bitmap = BitmapUtils.getSizeRestrictedBitmap(this,
                     uri,
-                    AIQKit.LONGEST_SIDE_DESIRED_PIXELS,
+                    ScantoKit.LONGEST_SIDE_DESIRED_PIXELS,
                     false, false);
 
-            AIQKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
+            ScantoKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
                 @NotNull
                 @Override
                 public CoroutineContext getContext() {

@@ -1,19 +1,19 @@
-Scanto aiqkit Android SDK sample implementation With Java
+Scanto scantokit Android SDK sample implementation With Java
 -----------------
 
-The Android SDK gives you access to the powerful Scanto Vision Search platform to integrate into your Android app. It uses [AIQApi]("https://github.com/scan-to/AIQApi-Android") library for the api calls.
+The Android SDK gives you access to the powerful Scanto Vision Search platform to integrate into your Android app. It uses [ScantoApi]("https://github.com/scan-to/ScantoApi-Android") library for the api calls.
 
 #### AppID and Ingestion
 
 Before using the sdk, an AppID/Secret pair is required. This can be obtained from the client dashboard at https://dashboard.scanto.tech/. 
 You also need to ingest some image/pdf/video before you can search for them.
 
-#### Add aiqkit as a Dependency.
+#### Add scantokit as a Dependency.
 
 add to your build.gradle:
 ```
 dependencies {
-    implementation 'tech.aiq:aiqkit:3.0'
+    implementation 'tech.scanto:scantokit:3.0'
 }
 ```
 make sure you have the jcenter repo in your top level (project) build.gradle:
@@ -30,19 +30,19 @@ allprojects {
 Before using the kit, we need to initialise the SDK with AppId and Secret.
 Best practice to call this at Application class.
 ```
-AIQKit.Companion.init(context, "AppID", "Secret", "UserId", isProduction, enableLog);
+ScantoKit.Companion.init(context, "AppID", "Secret", "UserId", isProduction, enableLog);
 ```
 To use the example apps, define the following in your gradle.properties file:
 
 ```
-AIQ_APP_ID=enter AppID here
-AIQ_APP_SECRET=enter Secret here
+SCANTO_APP_ID=enter AppID here
+SCANTO_APP_SECRET=enter Secret here
 ```
 **UserId**, a value that can be used to uniquely identify an application user. Maximum length 100 characters; Excess will be truncated automatically.
 
 You are able to change this UserId with:
 ```
-AIQKit.Companion.changeUserConfiguration(userId, age, gender);
+ScantoKit.Companion.changeUserConfiguration(userId, age, gender);
 ```
 Age and gender are optional, you can pass null.
 Gender is either "male", "female", or "other".
@@ -52,7 +52,7 @@ UserId will be counted as how many user use your application. So it's best pract
 **isProduction** you can set either true or false, if true then it will point to production url https://api.scanto.tech, and if false it will point to staging url https://api.stage.scanto.tech.
 You can override the base url with:
 ```
-AIQKit.Companion.setBaseUrl("url");
+ScantoKit.Companion.setBaseUrl("url");
 ```
 **enableLog** if true will print api call logs, else false.
 
@@ -60,26 +60,26 @@ AIQKit.Companion.setBaseUrl("url");
 ##### Authentication
 The SDK can do authentication with server automatically. Though you can manually authenticate by calling:
 ```
-AIQKit.Companion.auth()
+ScantoKit.Companion.auth()
 ```
 
 ##### Launch Scanner Activity
 There are 3 ways on using the scanner. 
 1. is by using Scanto default scanner by calling :
 ```
-AIQKit.Companion.startScanner(context);
+ScantoKit.Companion.startScanner(context);
 
 //scan within the specific collectionId
-AIQKit.Companion.startScanner(context, collectionId);
+ScantoKit.Companion.startScanner(context, collectionId);
 ```
 The scan result will be automatically opened in a web activity.
 
-2. is by using AIQ default scanner but handle the payload by yourself :
+2. is by using Scanto default scanner but handle the payload by yourself :
 ```
-AIQKit.Companion.startScannerForResult(activity, requestCode);
+ScantoKit.Companion.startScannerForResult(activity, requestCode);
 
 //scan within the specific collectionId
-AIQKit.Companion.startScannerForResult(activity, collectionId, requestCode);
+ScantoKit.Companion.startScannerForResult(activity, collectionId, requestCode);
 
 ```
 and handle the scan result :
@@ -87,8 +87,8 @@ and handle the scan result :
 protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == REQUEST_AIQ_SCAN && resultCode == Activity.RESULT_OK) {
-            final PayloadData payloadData = AIQKit.getPayloadDataFromIntentResult(data);
+        if(requestCode == REQUEST_SCANTO_SCAN && resultCode == Activity.RESULT_OK) {
+            final PayloadData payloadData = ScantoKit.getPayloadDataFromIntentResult(data);
             //do what you want with the data
         }
     }
@@ -112,10 +112,10 @@ public class MyScannerActivity extends IqKitScannerActivity {
 }
 ```
 ##### Matching Bitmap And Image Url Manually
-If you prefer to build your scanner, or if you want to directly match the bitmap/image url, you can use AIQKit.Companion.matchImage() functions:
+If you prefer to build your scanner, or if you want to directly match the bitmap/image url, you can use ScantoKit.Companion.matchImage() functions:
 ```
 //1. match bitmap
-AIQKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
+ScantoKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
             @NotNull
             @Override
             public CoroutineContext getContext() {
@@ -133,7 +133,7 @@ AIQKit.Companion.matchImage(bitmap, new Continuation<PayloadData>() {
         });
         
 //2. match bitmap with specific collection id
-AIQKit.Companion.matchImage(bitmap, "collectionId", new Continuation<PayloadData>() {
+ScantoKit.Companion.matchImage(bitmap, "collectionId", new Continuation<PayloadData>() {
             @NotNull
             @Override
             public CoroutineContext getContext() {
@@ -151,7 +151,7 @@ AIQKit.Companion.matchImage(bitmap, "collectionId", new Continuation<PayloadData
         });
         
 //3. match image url
-AIQKit.Companion.matchImage(imageUrlString, new Continuation<PayloadData>() {
+ScantoKit.Companion.matchImage(imageUrlString, new Continuation<PayloadData>() {
             @NotNull
             @Override
             public CoroutineContext getContext() {
@@ -169,7 +169,7 @@ AIQKit.Companion.matchImage(imageUrlString, new Continuation<PayloadData>() {
         });
         
 //4. match image url with specific collection id
-AIQKit.Companion.matchImage(imageUrlString, "collectionId", new Continuation<PayloadData>() {
+ScantoKit.Companion.matchImage(imageUrlString, "collectionId", new Continuation<PayloadData>() {
             @NotNull
             @Override
             public CoroutineContext getContext() {
@@ -189,7 +189,7 @@ AIQKit.Companion.matchImage(imageUrlString, "collectionId", new Continuation<Pay
 
 ##### Miscellaneous
 ###### Theme
-AIQ SDK has it's own theme. So if your application also has custom theme, then you need to add
+Scanto SDK has it's own theme. So if your application also has custom theme, then you need to add
 ```
 tools:replace="android:theme"
 ```
@@ -225,8 +225,8 @@ Add this to your proguard file:
 -dontwarn io.netty.**
 -dontwarn com.typesafe.**
 -dontwarn org.slf4j.**
--keep class tech.aiq.api.** { *; }
--keep class tech.aiq.kit.core.room.entity.** { *; }
--keep class tech.aiq.kit.core.model.** { *; }
+-keep class tech.scanto.api.** { *; }
+-keep class tech.scanto.kit.core.room.entity.** { *; }
+-keep class tech.scanto.kit.core.model.** { *; }
 -optimizations !class/unboxing/enum
 ```

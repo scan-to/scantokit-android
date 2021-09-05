@@ -25,7 +25,7 @@
 -dontwarn io.netty.**
 -dontwarn com.typesafe.**
 -dontwarn org.slf4j.**
--keep class tech.aiq.api.** { *; }
--keep class tech.aiq.kit.core.room.entity.** { *; }
--keep class tech.aiq.kit.core.model.** { *; }
+-keep class tech.scanto.api.** { *; }
+-keep class tech.scanto.kit.core.room.entity.** { *; }
+-keep class tech.scanto.kit.core.model.** { *; }
 -optimizations !class/unboxing/enum
