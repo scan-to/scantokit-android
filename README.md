@@ -94,9 +94,9 @@ protected void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 ```
 
-3. is by subclassing the IqKitScannerActivity class
+3. is by subclassing the ScantoKitScannerActivity class
 ```
-public class MyScannerActivity extends IqKitScannerActivity {
+public class MyScannerActivity extends ScantoKitScannerActivity {
 
     /**
      * override the payload data handler. 

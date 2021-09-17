@@ -49,9 +49,6 @@ android {
     }
 
     dependencies {
-        //TODO add it on bintray and change dependencies to scanto
-        //Then change aiq_logo in splash.xml
-//        implementation "tech.scanto.scantokit:2.0.6"
-        implementation "tech.aiq:aiqkit:2.0.6"
+        implementation "tech.scanto:scantokit:3.0"
     }
 }
