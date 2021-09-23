@@ -230,3 +230,13 @@ Add this to your proguard file:
 -keep class tech.scanto.kit.core.model.** { *; }
 -optimizations !class/unboxing/enum
 ```
+#### How to Run
+There is 3 module in scantokit, namely : 'photo', 'scanner', and 'camera'.
+
+Photo is used by taking an image from Gallery.
+Scanner is used by scanning an image real time.
+Camera is used by taking a photo.
+
+Simply run each module to build and launch the apks. 
+
+Video Documentation : https://drive.google.com/drive/folders/1nBiy-3hw_SLV6yG-KGHmHj8TJik3s19A?usp=sharing
