@@ -1,4 +1,4 @@
-package tech.aiq.aiqkit.sample.camera;
+package tech.scanto.scantokit.sample.camera;
 
 import android.Manifest;
 import android.app.Activity;
@@ -18,8 +18,8 @@ import org.jetbrains.annotations.NotNull;
 import kotlin.coroutines.Continuation;
 import kotlin.coroutines.CoroutineContext;
 import kotlin.coroutines.EmptyCoroutineContext;
-import tech.aiq.api.model.PayloadData;
-import tech.aiq.kit.AIQKit;
+import tech.scanto.api.model.PayloadData;
+import tech.scanto.kit.ScantoKit;
 
 public class MainActivity extends Activity {
 
@@ -53,7 +53,7 @@ public class MainActivity extends Activity {
             final Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, imageBitmap.getWidth() * 3, imageBitmap.getHeight() * 3, true);
             imageBitmap.recycle();
 
-            AIQKit.Companion.matchImage(resizedBitmap, new Continuation<PayloadData>() {
+            ScantoKit.Companion.matchImage(resizedBitmap, new Continuation<PayloadData>() {
                 @NotNull
                 @Override
                 public CoroutineContext getContext() {

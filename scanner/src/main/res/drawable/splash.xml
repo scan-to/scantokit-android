@@ -4,7 +4,7 @@
     <item android:drawable="@color/white" />
     <item>
         <bitmap
-            android:src="@drawable/aiq_logo"
+            android:src="@drawable/scanto_logo"
             android:gravity="center"/>
     </item>
     <item android:bottom="40dp">

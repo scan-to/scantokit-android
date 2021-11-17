@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tech.aiq.aiqkit.sample.photo">
+    package="tech.scanto.scantokit.sample.photo">
 
     <application
         android:name=".PhotoApplication"

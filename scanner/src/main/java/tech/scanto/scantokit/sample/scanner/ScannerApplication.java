@@ -1,9 +1,9 @@
-package tech.aiq.aiqkit.sample.scanner;
+package tech.scanto.scantokit.sample.scanner;
 
 import android.app.Application;
 import android.util.Log;
 
-import tech.aiq.kit.AIQKit;
+import tech.scanto.kit.ScantoKit;
 
 public class ScannerApplication extends Application {
 
@@ -17,8 +17,8 @@ public class ScannerApplication extends Application {
 
         Log.d(TAG, "ScannerApplication Started");
 
-        //initialize aiqkit
-        AIQKit.Companion.init(this, BuildConfig.AIQ_APP_ID, BuildConfig.AIQ_APP_SECRET, USER_ID, true, true);
-        Log.d(TAG, "Initialized AIQKit SDK");
+        //initialize scantokit
+        ScantoKit.Companion.init(this, BuildConfig.SCANTO_APP_ID, BuildConfig.SCANTO_APP_SECRET, USER_ID, true, true);
+        Log.d(TAG, "Initialized ScantoKit SDK");
     }
 }

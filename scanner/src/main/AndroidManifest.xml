@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="tech.aiq.aiqkit.sample.scanner">
+    package="tech.scanto.scantokit.sample.scanner">
 
     <application
         android:name=".ScannerApplication"

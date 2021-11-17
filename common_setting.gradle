@@ -7,17 +7,17 @@ android {
         versionCode 3
         versionName "1.0.2"
 
-        buildConfigField('String', 'AIQ_APP_ID', "\"${AIQ_APP_ID}\"")
-        buildConfigField('String', 'AIQ_APP_SECRET', "\"${AIQ_APP_SECRET}\"")
+        buildConfigField('String', 'SCANTO_APP_ID', "\"${SCANTO_APP_ID}\"")
+        buildConfigField('String', 'SCANTO_APP_SECRET', "\"${SCANTO_APP_SECRET}\"")
     }
 
 
     signingConfigs {
         release {
-            storeFile file(rootDir.getAbsolutePath() + '/keystores/aiqkit.sample.release.keystore.jks')
-            keyAlias 'aiqkitsample'
-            keyPassword 'aiqkit'
-            storePassword 'aiqkit'
+            storeFile file(rootDir.getAbsolutePath() + '/keystores/scantokit.sample.release.keystore.jks')
+            keyAlias 'scantokitsample'
+            keyPassword 'scantokit'
+            storePassword 'scantokit'
         }
     }
 
@@ -49,6 +49,6 @@ android {
     }
 
     dependencies {
-        implementation "tech.aiq:aiqkit:2.0.6"
+        implementation "tech.scanto:scantokit:3.0"
     }
 }
